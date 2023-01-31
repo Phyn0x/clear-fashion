@@ -2,6 +2,8 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
 'use strict';
 
+console.log("Bonjour Missié");
+
 console.log('🚀 This is it.');
 
 const MY_FAVORITE_BRANDS = [
@@ -35,6 +37,10 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // I can find on these e-shops
 // 2. Log the variable
 
+const cheapest_tshirt = "https://www.faguo-store.com/fr/vetements/8021-arcy-t-shirt-en-coton-recycle-marine-tourne-disque-navy-.html";
+console.log("cheapest_tshirt =", cheapest_tshirt); 
+
+
 /**
  * 👕
  * Easy 😁?
@@ -44,19 +50,41 @@ console.log(MY_FAVORITE_BRANDS[0]);
  * 👕
  */
 
+console.log(marketplace);
+
 // 🎯 TODO 2: Number of products
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
+
+const number_of_products = marketplace.length;
+console.log('number of products =', number_of_products);
 
 // 🎯 TODO 3: Brands name
 // 1. Create a variable and assign it the list of brands name only
 // 2. Log the variable
 // 3. Log how many brands we have
 
+const brand_names = [];
+for(let i = 0; i < marketplace.length;i++){
+  if(!brand_names.includes(marketplace[i]["brand"])){
+    const position = brand_names.length;
+    brand_names[position] = marketplace[i]["brand"];
+  }
+}
+console.log("Nom des différentes marques :",brand_names);
+console.log("Nombre de marques :",brand_names.length);
+
 // 🎯 TODO 4: Sort by price
 // 1. Create a function to sort the marketplace products by price
 // 2. Create a variable and assign it the list of products by price from lowest to highest
 // 3. Log the variable
+
+console.log(marketplace[0], marketplace[1]);
+function sort_by_price(){
+  marketplace.sort(function(a,b){return a["price"]-b["price"];});
+}
+sort_by_price();
+console.log(marketplace[0], marketplace[1]);
 
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
