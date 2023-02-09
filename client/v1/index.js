@@ -404,7 +404,7 @@ const COTELE_PARIS = [
 let today = new Date();
 for(let elem in COTELE_PARIS){
   let item =  new Date(COTELE_PARIS[elem].released)
-  if((today.getTime() - item.getTime())/86400000 <= 30){ //30 because if we put 14 (2 weeks) there are no products.
+  if((today.getTime() - item.getTime())/86400000 <= 30){ //30 because if we put 14 (2 weeks) there are no products !
     console.log(COTELE_PARIS[elem])
   }
 }
