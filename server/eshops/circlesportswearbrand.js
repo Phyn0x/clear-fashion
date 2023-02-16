@@ -14,12 +14,13 @@ const parse = data => {
       const name = $(element)
         .find('.full-unstyled-link')
         .text()
-        .trim();
-        //.replace(/\s/g, ' ');
+        .trim()
+        .split('\n')[0];
       const price = parseInt(
         $(element)
           .find('.money')
           .text()
+          .replace("€",'')
       );
 
       return {name, price};
