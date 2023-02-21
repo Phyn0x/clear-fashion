@@ -11,13 +11,15 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
     switch(eshop){
       case 'https://www.dedicatedbrand.com/en/men/news':
         products = await dedicatedbrand.scrape(eshop);
-        fs.writeFile('./dedicatedbrand.txt', JSON.stringify(products), (err) => {if (err) throw err;})
+        fs.writeFile('dedicatedbrand.txt', JSON.stringify(products), (err) => {if (err) throw err;})
         break;
       case 'https://www.montlimart.com/99-vetements':
         products = await montlimartbrand.scrape(eshop);
+        fs.writeFile('montlimart.txt', JSON.stringify(products), (err) => {if (err) throw err;})
         break;
       case 'https://shop.circlesportswear.com/collections/collection-homme':
         products = await circlesportswear.scrape(eshop);
+        fs.writeFile('circlesportswear.txt', JSON.stringify(products), (err) => {if (err) throw err;})
         break;
     }
     
