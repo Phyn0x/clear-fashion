@@ -2,6 +2,7 @@
 const dedicatedbrand = require('./eshops/dedicatedbrand');
 const montlimartbrand = require('./eshops/montlimartbrand');
 const circlesportswear = require('./eshops/circlesportswearbrand');
+const fs = require('fs')
 
 async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
   try {
@@ -10,6 +11,7 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
     switch(eshop){
       case 'https://www.dedicatedbrand.com/en/men/news':
         products = await dedicatedbrand.scrape(eshop);
+        fs.writeFile('./dedicatedbrand.txt', JSON.stringify(products), (err) => {if (err) throw err;})
         break;
       case 'https://www.montlimart.com/99-vetements':
         products = await montlimartbrand.scrape(eshop);
@@ -29,6 +31,16 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
   }
 }
 
+/*function allsandbox (){
+  const liste = ['https://www.dedicatedbrand.com/en/men/news','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'] ;
+  var products = [];
+  for(let elem in liste){
+    products = products.concat(sandbox(liste[elem]));
+  }
+  return products;
+}*/
+
 const [,, eshop] = process.argv;
 
 sandbox(eshop);
+//allsandbox();
