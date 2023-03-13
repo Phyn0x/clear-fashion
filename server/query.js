@@ -12,7 +12,8 @@ function Query(filter = {}, options = {}){
     client.connect(async () => {
         const collection = client.db("clear-fashion").collection("products");
         const results = await collection.find(filter, options).toArray();
-        console.log("Number of products:", results.length)
+        console.log(results);
+        console.log("Number of products:", results.length);
         client.close();
         return results;
     });
@@ -23,4 +24,41 @@ function FindAllBrandProduct(brandName = "dedicated") {
     return Query(script);
 }
 
-FindAllBrandProduct();
+function ProductsLessThan(price){
+    const script = {price:{$lt:price}}
+    return Query(script);
+}
+
+
+function SortItemsByPrice(order = "desc") {
+    var script;
+    if(order === "desc") {
+        script = {sort: {price:-1}};
+    }
+    else {
+        script = {sort: {price:1}};
+    }
+    return Query({}, script);
+}
+
+function sortItemsDate(order = "desc"){
+    var script;
+    if(order === "desc") {
+        script = {sort: {scrape_date:-1}};
+    }
+    else {
+        script = {sort: {scrape_date:1}};
+    }
+    return Query({}, script);
+}
+
+function productsScrapedLessThan(time = 14){ //In days
+    const script = {scrape_date:{$gt:new Date(Date.now() - time * 24 * 60 * 60 * 1000)}}
+    return Query({},script);
+}
+
+//FindAllBrandProduct();
+//ProductsLessThan(35);
+//SortItemsByPrice();
+//sortItemsDate();
+//productsScrapedLessThan();
