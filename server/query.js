@@ -19,7 +19,7 @@ function Query(filter = {}, options = {}){
 }
 
 function FindAllBrandProduct(brandName = "dedicated") {
-    const script = {brand: `${brandName}`};
+    const script = {brand_name: `${brandName}`};
     return Query(script);
 }
 
