@@ -11,9 +11,16 @@ function Query(filter = {}, options = {}){
     const client = getClient();
     client.connect(async () => {
         const collection = client.db("clear-fashion").collection("products");
-        const results = collection.find(filter, options).toArray();
+        const results = await collection.find(filter, options).toArray();
         console.log("Number of products:", results.length)
         client.close();
         return results;
     });
 }
+
+function FindAllBrandProduct(brandName = "dedicated") {
+    const script = {brand: `${brandName}`};
+    return Query(script);
+}
+
+FindAllBrandProduct();

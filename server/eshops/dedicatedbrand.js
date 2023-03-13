@@ -9,7 +9,7 @@ const cheerio = require('cheerio');
 const parse = data => {
   const $ = cheerio.load(data);
   scrape_date = new Date();
-  brand_name = 'dedicatedbrand';
+  brand_name = 'dedicated';
   return $('.productList-container .productList')
     .map((i, element) => {
       const name = $(element)
