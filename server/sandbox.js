@@ -57,3 +57,4 @@ async function finalResult(){
 }
 
 finalResult();
+//scrape();
