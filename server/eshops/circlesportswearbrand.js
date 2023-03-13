@@ -8,7 +8,8 @@ const cheerio = require('cheerio');
  */
 const parse = data => {
   const $ = cheerio.load(data);
-
+  scrape_date = new Date();
+  brand_name = 'circlesportswear';
   return $('#product-grid .grid__item')
     .map((i, element) => {
       const name = $(element)
@@ -23,7 +24,7 @@ const parse = data => {
           .replace("€",'')
       );
 
-      return {name, price};
+      return {name, price, scrape_date, brand_name};
     })
     .get();
 };

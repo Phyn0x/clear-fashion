@@ -4,7 +4,7 @@ const montlimartbrand = require('./eshops/montlimartbrand');
 const circlesportswear = require('./eshops/circlesportswearbrand');
 const fs = require('fs')
 
-async function scrape (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
+async function scrape (eshop) {
   try {
     var products;
     console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
@@ -24,7 +24,7 @@ async function scrape (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
     }
     
 
-    //console.log(products);
+    console.log(products);
     return products;
     console.log('done');
     process.exit(0);
@@ -57,4 +57,4 @@ async function finalResult(){
 }
 
 finalResult();
-//scrape();
+//scrape('https://shop.circlesportswear.com/collections/collection-homme');

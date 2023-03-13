@@ -8,7 +8,8 @@ const cheerio = require('cheerio');
  */
 const parse = data => {
   const $ = cheerio.load(data);
-
+  scrape_date = new Date();
+  brand_name = 'dedicatedbrand';
   return $('.productList-container .productList')
     .map((i, element) => {
       const name = $(element)
@@ -22,7 +23,7 @@ const parse = data => {
           .text()
       );
 
-      return {name, price};
+      return {name, price, scrape_date, brand_name};
     })
     .get();
 };
