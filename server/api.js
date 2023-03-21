@@ -37,10 +37,9 @@ app.get('/products/search', async (request, response) => {
     const collection = client.db("clear-fashion").collection("products");
 
     script = {};
-
-    var limit = request.params.limit;
-    var brand = request.params.brand;
-    var price = request.params.price;
+    var limit = request.query.limit;
+    var brand = request.query.brand;
+    var price = request.query.price;
 
     if(limit == undefined){
       limit = 12;
@@ -50,11 +49,11 @@ app.get('/products/search', async (request, response) => {
     }
 
     if(brand){
-      script.brand = brand;
+      script.brand_name = brand;
     }
 
     if(price){
-      script.price = price;
+      script.price = {$lte: parseInt(price)};
     }
 
     const result = await collection.find(script).limit(limit).toArray();
