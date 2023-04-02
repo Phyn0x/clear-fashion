@@ -31,6 +31,25 @@ app.listen(PORT);
 
 console.log(`📡 Running on port ${PORT}`);
 
+app.get('/brands', async (request, response) => {
+  try{
+    const client = getClient();
+    const collection = client.db("clear-fashion").collection("products");
+    const found = await collection.distinct('brand_name');
+    response.json(found);
+  }
+  catch{
+    response.send({error : "Couldn't fetch brands"}); 
+  }
+});
+
+app.get('/products', async (request, response) => {
+  const client = getClient();
+  const collection = client.db("clear-fashion").collection("products");
+  const result = await collection.find({}).toArray();
+  response.json(result);
+});
+
 app.get('/products/search', async (request, response) => {
   try{
     const client = getClient();
@@ -77,3 +96,4 @@ app.get('/products/:id', async (request, response) => {
     response.send({error : "Can't find item with this id"})
   }
 })
+
