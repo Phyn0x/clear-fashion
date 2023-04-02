@@ -59,6 +59,7 @@ app.get('/products/search', async (request, response) => {
     var limit = request.query.limit;
     var brand = request.query.brand;
     var price = request.query.price;
+    var page = request.query.page;
 
     if(limit == undefined){
       limit = 12;
@@ -73,6 +74,13 @@ app.get('/products/search', async (request, response) => {
 
     if(price){
       script.price = {$lte: parseInt(price)};
+    }
+
+    if(page == undefined){
+      page = 1;
+    }
+    else{
+      page = parseInt(page);
     }
 
     const result = await collection.find(script).limit(limit).toArray();

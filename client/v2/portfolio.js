@@ -58,7 +58,6 @@ const fetchAllProducts = async () => {
   try {
     const response = await fetch(
       'https://clear-fashion-flax-six.vercel.app/products'
-      ///`http://localhost:8092/products`
     );
     const body = await response.json();
     return body;
@@ -130,10 +129,9 @@ const renderSearchProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product._id}>
-        <span>${product.brand}</span>
-        <a href="${product.link}" target="_blank">${product.name}</a>
+        <span>${product.brand_name}</span>
+        <span>${product.name}</span>
         <span>${product.price}€</span>
-        <span>${product.caracteristique}</span>
         <button onclick="changeFavorite('${product._id}')">${textFavorite(product._id)}</button>
       </div>
     `;
@@ -148,10 +146,9 @@ const renderFavoriteProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product._id}>
-        <span>${product.brand}</span>
-        <a href="${product.link}" target="_blank">${product.name}</a>
+        <span>${product.brand_name}</span>
+        <span>${product.name}</span>
         <span>${product.price}€</span>
-        <span>${product.caracteristique}</span>
         <button onclick="changeFavorite('${product._id}')">${textFavorite(product._id)}</button>
       </div>
     `;
