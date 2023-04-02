@@ -124,6 +124,7 @@ function textFavorite(id) {
 
 const renderSearchProducts = products => {
   currentProducts = products;
+  console.log(products);
   const template = products
     .map(product => {
       return `
@@ -240,7 +241,6 @@ const quantile = (arr, q) => {
 document.addEventListener('DOMContentLoaded', async () => {
   let brand_names = await fetchBrands();
   brand_names = brand_names.result;
-  console.log(brand_names);
   spanNbBrands.innerHTML = brand_names.length;
   brand_names.unshift("All");
   const brands = Array.from(
