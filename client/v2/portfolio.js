@@ -240,7 +240,7 @@ const quantile = (arr, q) => {
 document.addEventListener('DOMContentLoaded', async () => {
   const brand_names = await fetchBrands();
   spanNbBrands.innerHTML = brand_names.length;
-  alert("ICI");
+  console.log(alert("ICI"));
   brand_names.unshift("All");
   const brands = Array.from(
     brand_names,
