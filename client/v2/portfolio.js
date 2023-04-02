@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   selectBrand.innerHTML = brands;
 
   let products = await fetchProducts();
+  products = products.result;
   renderSearchProducts(products);
 
   const all_products = await fetchAllProducts();
