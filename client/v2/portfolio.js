@@ -238,8 +238,8 @@ const quantile = (arr, q) => {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log('TEST');
   const brand_names = await fetchBrands();
+  console.log(brand_names);
   spanNbBrands.innerHTML = brand_names.length;
   brand_names.unshift("All");
   const brands = Array.from(
