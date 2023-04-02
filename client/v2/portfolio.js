@@ -46,7 +46,7 @@ const fetchProducts = async (show=12, page=1, brand="",price="") => {
     ).join('');
     selectPage.innerHTML = options;
     selectPage.selectedIndex = page;
-    return body.result;
+    return body;
   } catch (error) {
     console.error(error);
     return currentProducts;
