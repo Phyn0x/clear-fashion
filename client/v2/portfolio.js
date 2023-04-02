@@ -46,7 +46,7 @@ const fetchProducts = async (show=12, page=1, brand="",price="") => {
     ).join('');
     selectPage.innerHTML = options;
     selectPage.selectedIndex = page;
-    return body;
+    return body.result;
   } catch (error) {
     console.error(error);
     return currentProducts;
@@ -59,7 +59,7 @@ const fetchAllProducts = async () => {
       'https://clear-fashion-flax-six.vercel.app/products'
     );
     const body = await response.json();
-    return body;
+    return body.result;
   } catch (error) {
     console.error(error);
     return currentProducts;
@@ -72,7 +72,7 @@ const fetchBrands = async () => {
       'https://clear-fashion-flax-six.vercel.app/brands'
     );
     const body = await response.json();
-    return body;
+    return body.result;
   } catch (error) {
     console.error(error);
     return currentProducts;
@@ -85,7 +85,7 @@ const fetchSortProducts = async (sort=-1) => {
       `https://clear-fashion-flax-six.vercel.app/sort?sort=${sort}`
     );
     const body = await response.json();
-    return body;
+    return body.result;
   } catch (error) {
     console.error(error);
     return currentProducts;
@@ -240,7 +240,6 @@ const quantile = (arr, q) => {
 
 document.addEventListener('DOMContentLoaded', async () => {
   let brand_names = await fetchBrands();
-  brand_names = brand_names.result;
   spanNbBrands.innerHTML = brand_names.length;
   brand_names.unshift("All");
   const brands = Array.from(
@@ -251,7 +250,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   selectBrand.innerHTML = brands;
 
   let products = await fetchProducts();
-  products = products.result;
   renderSearchProducts(products);
 
   const all_products = await fetchAllProducts();
