@@ -39,7 +39,7 @@ const fetchProducts = async (show=12, page=1, brand="",price="") => {
 
     //const currentPage = body.currentPage;
     const totalPages = body.totalPages;
-    spanNbSearchProducts.innerHTML = body.result.length + ' products found';
+    spanNbSearchProducts.innerHTML = body.result.length + ' found';
     const options = Array.from(
       {'length': totalPages},
       (value, index) => `<option value="${index + 1}">${index + 1}</option>`
@@ -129,8 +129,8 @@ const renderSearchProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product._id}>
-        <span>${product.brand_name}</span>
-        <span>${product.name}</span>
+        <span>${product.brand_name} -- </span>
+        <span>${product.name} -- </span>
         <span>${product.price}€</span>
         <button onclick="changeFavorite('${product._id}')">${textFavorite(product._id)}</button>
       </div>
