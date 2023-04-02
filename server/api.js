@@ -24,7 +24,7 @@ app.use(helmet());
 app.options('*', cors());
 
 app.get('/', (request, response) => {
-  response.send({'ack': true});
+  response.send({'ack': "ceci est un test"});
 });
 
 app.listen(PORT);
