@@ -45,7 +45,7 @@ const fetchProducts = async (show=12, page=1, brand="",price="") => {
       (value, index) => `<option value="${index + 1}">${index + 1}</option>`
     ).join('');
     selectPage.innerHTML = options;
-    selectPage.selectedIndex = currentPage - 1;
+    selectPage.selectedIndex = page;
     return body.result;
   } catch (error) {
     console.error(error);
