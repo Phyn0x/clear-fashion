@@ -34,7 +34,6 @@ const sectionFavoriteProducts = document.querySelector('#favoriteProducts');
 const fetchProducts = async (show=12, page=1, brand="",price="") => {
   try {
     let url = `https://clear-fashion-flax-six.vercel.app/products/search?page=${page}&limit=${show}&brand=${brand}&price=${price}`;
-    console.log(url);
     const response = await fetch(url);
     const body = await response.json();
 
