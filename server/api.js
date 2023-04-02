@@ -67,7 +67,9 @@ app.get('/products/search', async (request, response) => {
     else{
       limit = parseInt(limit);
     }
+    const skip = (page - 1) * limit;
 
+    
     if(brand){
       script.brand_name = brand;
     }
@@ -82,9 +84,11 @@ app.get('/products/search', async (request, response) => {
     else{
       page = parseInt(page);
     }
+    const count = await collection.countDocuments(script);
+    const totalPages = Math.ceil(count / limit);
 
-    const result = await collection.find(script).limit(limit).toArray();
-    response.send({result : result})
+    const result = await collection.find(script).skip(skip).limit(limit).toArray();
+    response.send({result : result, totalPages : totalPages})
   }
   catch(err){
     response.send({error : "Can't search this information."})
