@@ -35,8 +35,8 @@ app.get('/brands', async (request, response) => {
   try{
     const client = getClient();
     const collection = client.db("clear-fashion").collection("products");
-    const found = await collection.distinct('brand_name');
-    response.json(found);
+    const result = await collection.distinct('brand_name');
+    response.send({result:result});
   }
   catch{
     response.send({error : "Couldn't fetch brands"}); 
@@ -47,7 +47,7 @@ app.get('/products', async (request, response) => {
   const client = getClient();
   const collection = client.db("clear-fashion").collection("products");
   const result = await collection.find({}).toArray();
-  response.json(result);
+  response.send({result:result});
 });
 
 app.get('/products/search', async (request, response) => {
@@ -101,7 +101,35 @@ app.get('/products/:id', async (request, response) => {
     response.send({result : result})
   }
   catch(err){
-    response.send({error : "Can't find item with this id"})
+    response.send({error : "Can't find an item with this id"})
   }
 })
+
+app.get('/products', async (request, response) => {
+  const client = getClient();
+  const collection = client.db("clear-fashion").collection("products");
+  const result = await collection.find({}).toArray();
+  response.send({result:result});
+});
+
+app.get('/sort', async (request, response) => {
+  const client = getClient();
+  const collection = client.db("clear-fashion").collection("products");
+  var sortVal = request.query.sort;
+
+  const sortType ={};
+  if(sortVal==1){
+    sortType.price = 1;
+  }
+  else if(sortVal==-1){
+    sortType.price = -1;
+  }
+  else{
+    sortType.price = 0;
+  }
+
+  const result = await collection.find({}).sort(sortType).toArray();
+
+  response.send({result:result});
+});
 
