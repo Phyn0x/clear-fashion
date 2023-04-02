@@ -37,16 +37,16 @@ const fetchProducts = async (show=12, page=1, brand="",price="") => {
     const response = await fetch(url);
     const body = await response.json();
 
-    const currentPage = body.currentPage;
+    //const currentPage = body.currentPage;
     const totalPages = body.totalPages;
-    spanNbSearchProducts.innerHTML = body.totalCount + ' products found';
+    spanNbSearchProducts.innerHTML = body.result.length + ' products found';
     const options = Array.from(
       {'length': totalPages},
       (value, index) => `<option value="${index + 1}">${index + 1}</option>`
     ).join('');
     selectPage.innerHTML = options;
     selectPage.selectedIndex = currentPage - 1;
-    return body.data;
+    return body.result;
   } catch (error) {
     console.error(error);
     return currentProducts;
