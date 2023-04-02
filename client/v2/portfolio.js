@@ -238,7 +238,7 @@ const quantile = (arr, q) => {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
-  alert("TEST");
+  spanNbBrands.innerHTML = "TEST";
   const brand_names = await fetchBrands();
   spanNbBrands.innerHTML = brand_names.length;
   brand_names.unshift("All");
